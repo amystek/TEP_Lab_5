@@ -9,7 +9,6 @@ using namespace std;
 class  CTreeStatic
 {
 private:    //CTreeStatic
-
     class  CNodeStatic
     {
     public:
@@ -18,10 +17,13 @@ private:    //CTreeStatic
         void vSetValue(int iNewVal) {i_val = iNewVal;};
         int iGetChildrenNumber() {return(v_children.size());};
         void vAddNewChild();
+        void vAddNewChild(CNodeStatic*);
         void vPrint() {cout << " " << i_val;};
         void vPrintAllBelow();
         void vPrintUp();
         CNodeStatic *pcGetChild(int iChildOffset);
+        CNodeStatic *pcGetParent() {return pc_parent;};
+        void vEraseChild(CNodeStatic*);
 //        int iGetValue() {return i_val;}
     private:
         vector<CNodeStatic> v_children;
@@ -30,13 +32,15 @@ private:    //CTreeStatic
     }; //class CNodeStatic
 
     CNodeStatic c_root;
+
 public:     //CTreeStatic
     CTreeStatic() { };
     ~CTreeStatic() { };
     CNodeStatic *pcGetRoot() {return(&c_root);}
     void  vPrintTree();
-    void v_tree_test();
-}; //class CTreeStatic-old
+    bool bMoveSubtree(CNodeStatic *pcParentNode, CNodeStatic *pcNewChildNode);
+//    void v_tree_test();
+}; //class CTreeStatic
 
 
 #endif //LAB_5_CTREESTATIC_H
